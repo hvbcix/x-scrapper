@@ -1,9 +1,9 @@
 import wikipediaapi
 
-# Ustal szczegółowy user-agent
+# agent, trzeba zmienić potem tytuł repo
 USER_AGENT = "x-scrapper (https://github.com/hvbcix; roszyk.hubert@gmail.com)"
 
-# Inicjalizacja obiektu Wikipedia z user-agent
+# zbiór języków po których szukamy
 wiki_languages = {
     'pl': wikipediaapi.Wikipedia(language='pl', user_agent=USER_AGENT),
     'en': wikipediaapi.Wikipedia(language='en', user_agent=USER_AGENT),
@@ -11,10 +11,10 @@ wiki_languages = {
     'fr': wikipediaapi.Wikipedia(language='fr', user_agent=USER_AGENT)
 }
 
-term = "Napoleon Bonaparte"  # Wyszukiwany termin
+term = "Napoleon Bonaparte"  # termin
 articles = {}
 
-# Pobieranie artykułów
+# pobieranie artykułów
 for lang, wiki in wiki_languages.items():
     page = wiki.page(term)
     if page.exists():
@@ -22,7 +22,7 @@ for lang, wiki in wiki_languages.items():
     else:
         articles[lang] = ""
 
-# Wyświetlenie fragmentu artykułów
+# wyświetlenie fragmentu artykułów
 for lang, text in articles.items():
     print(f"Język: {lang}, Długość tekstu: {len(text)}")
     print(text[:500])  # Wyświetlenie pierwszych 500 znaków
